@@ -5,7 +5,7 @@ from PyQt5.QtWebEngineWidgets import *
 from geopy.geocoders import Nominatim
 import sys, math
 import main
-
+main
 
 
 
@@ -37,19 +37,32 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.on_click)
         self.show()
 
+
     def on_click(self):
         try:
+            global cords
             geolocator = Nominatim(user_agent="RideShareApp")
             location = geolocator.geocode(self.textbox.text())
-            print("lat", location.latitude)
+            cords = str(location.latitude), str(location.longitude)
+            main
+
         except:
             print("Error Location Does not exist [Debug]")
 
 
-app = QApplication(sys.argv)
-screen = app.primaryScreen()
-size = screen.size()
+def main():
+    app = QApplication(sys.argv)
+    screen = app.primaryScreen()
+    size = screen.size()
 
-window = MainWindow()
+    window = MainWindow()
+    app.exec_()
 
-app.exec_()
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    screen = app.primaryScreen()
+    size = screen.size()
+
+    window = MainWindow()
+
+    app.exec_()
