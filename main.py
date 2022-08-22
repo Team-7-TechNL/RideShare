@@ -18,10 +18,10 @@ cords = [(47.51044931589316, -52.92471902671029),
          (47.52029535370516, -52.93654879275768)]
 
 # Creates the map
-my_map = folium.Map(location=StartPos, zoom_start=13,min_zoom=0,max_zoom=22)
+my_map = folium.Map(location=StartPos, zoom_start=13, min_zoom=0, max_zoom=22)
 
-plugins.Geocoder(position='topleft').add_to(my_map)
-plugins.LocateControl().add_to(my_map)
+#plugins.Geocoder(position='topleft').add_to(my_map)
+#plugins.LocateControl().add_to(my_map)
 # Adds markers to the map
 for i in cords:
     icon = folium.Icon(color='white', icon='car', icon_color="black", prefix='fa')
