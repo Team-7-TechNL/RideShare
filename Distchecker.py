@@ -1,7 +1,7 @@
 from geopy import distance
 
 if __name__ == "__main__":
-    import main, RideshareGUI
+    import RideshareGUI
 
 
 def distchecker(Clientcords):

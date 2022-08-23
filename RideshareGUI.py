@@ -5,9 +5,8 @@ from PyQt5.QtWebEngineWidgets import *
 from geopy.geocoders import Nominatim
 import sys, math
 from main import *
-
-
-
+import Distchecker
+import Setup
 
 class MainWindow(QMainWindow):
 
@@ -44,8 +43,9 @@ class MainWindow(QMainWindow):
             geolocator = Nominatim(user_agent="RideShareApp")
             location = geolocator.geocode(self.textbox.text())
             cords = location.latitude,location.longitude
-            Mapmain(cords)
-            print(cords)
+            Mapmain(cords,False)
+            Distchecker.distchecker(cords)
+
             self.browser.reload()
 
         except:
@@ -57,7 +57,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     screen = app.primaryScreen()
     size = screen.size()
-
     window = MainWindow()
 
     app.exec_()
