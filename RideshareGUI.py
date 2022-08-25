@@ -4,9 +4,11 @@ from PyQt5.QtWebEngineWidgets import *
 from geopy.geocoders import Nominatim
 import sys, math
 
-import Distchecker
+
 from main import Mapmain
 Mapmain((0,0))
+
+
 
 class MainWindow(QMainWindow):
 
@@ -36,14 +38,15 @@ class MainWindow(QMainWindow):
         self.show()
 
     def on_click(self):
-        try:
+            from Distchecker import distchecker
             geolocator = Nominatim(user_agent="RideShareApp")
             location = geolocator.geocode(self.textbox.text())
             cords = location.latitude, location.longitude
             Mapmain(cords)
+            distchecker(cords)
             self.browser.reload()
-        except:
-            print("Error")
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

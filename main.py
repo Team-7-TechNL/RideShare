@@ -1,8 +1,9 @@
 from typing import Tuple
 import folium
 
+
+
 def Mapmain(cords):
-    print(cords)
     #sets up the map to 0,0
     if cords != (0,0):
         StartPos = cords
@@ -24,8 +25,11 @@ def Mapmain(cords):
 
     # Creates the map
     my_map = folium.Map(location=StartPos, zoom_start=Zoom,min_zoom=0,max_zoom=19.3)
-
-
+    from Distchecker import distchecker, closetsdriver
+    if closetsdriver != 0:
+        folium.CircleMarker(location=closetsdriver, radius=50, popup="Closet Driver", color="#3186cc",
+                            fill=True,
+                            fill_color="#3186cc", ).add_to(my_map)
     # Adds markers to the map
     for i in cords:
         icon = folium.Icon(color='white', icon='car', icon_color="black", prefix='fa')
