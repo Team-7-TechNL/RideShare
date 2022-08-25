@@ -19,9 +19,8 @@ class MyWindow(QMainWindow):
         self.initUI()
 
     def button_clicked(self):
-        self.label = QLabel("Please select a location")
+        self.label.setText("Please select a location")
         self.label.setStyleSheet("border: 1px solid black")
-        self.label.move(1100, 900)
         self.label.adjustSize()
 
     def initUI(self):
