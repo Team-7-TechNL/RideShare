@@ -1,23 +1,22 @@
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtWebEngineWidgets import *
 from geopy.geocoders import Nominatim
 import sys, math
-from main import *
+
 import Distchecker
-import Setup
+from main import Mapmain
+Mapmain((0,0))
 
 class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
-        super(MainWindow,self).__init__(*args, **kwargs)
+        super(MainWindow, self).__init__(*args, **kwargs)
 
         self.browser = QWebEngineView()
         self.browser.setUrl(QUrl("file:///aee.html"))
 
         self.setCentralWidget(self.browser)
-
 
         self.frame1 = QFrame(self)
         self.frame1.setStyleSheet("background-color: lightgray")
@@ -36,27 +35,19 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.on_click)
         self.show()
 
-
     def on_click(self):
         try:
-
             geolocator = Nominatim(user_agent="RideShareApp")
             location = geolocator.geocode(self.textbox.text())
-            cords = location.latitude,location.longitude
-            Mapmain(cords,False)
-            Distchecker.distchecker(cords)
-
+            cords = location.latitude, location.longitude
+            Mapmain(cords)
             self.browser.reload()
-
         except:
-            print("Error Location Does not exist [Debug]")
-
-
+            print("Error")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     screen = app.primaryScreen()
     size = screen.size()
     window = MainWindow()
-
     app.exec_()

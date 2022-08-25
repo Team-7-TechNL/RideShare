@@ -1,25 +1,15 @@
 from typing import Tuple
-
 import folium
-from folium import plugins
 
-
-
-def Mapmain(cords,setup):
-    print("Map Started [Debug]")
-    #Start Position of the map
+def Mapmain(cords):
     print(cords)
-    try:
-        if setup == True:
-            Zoom = 3
-            StartPos = ["0", "0"]
-        else:
-            StartPos = cords
-            Zoom = 19.3
-
-    except:
+    #sets up the map to 0,0
+    if cords != (0,0):
+        StartPos = cords
+        Zoom = 19.3
+    else:
         Zoom = 3
-        StartPos = ["0", "0"]
+        StartPos = (0, 0)
 
 
 
@@ -40,5 +30,7 @@ def Mapmain(cords,setup):
     for i in cords:
         icon = folium.Icon(color='white', icon='car', icon_color="black", prefix='fa')
         folium.Marker(i, icon=icon).add_to(my_map)
+
     # Displays the map
+
     my_map.save('aee.html')
